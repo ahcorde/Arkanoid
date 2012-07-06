@@ -1,0 +1,97 @@
+<html>
+<head>
+<script type="text/javascript" src="js/stats.js"></script>
+<script type="text/javascript" src="js/Ball.js"></script>
+<script type="text/javascript" src="js/Bat.js"></script>
+<script type="text/javascript" src="js/Block.js"></script>
+<script type="text/javascript" src="js/levels.js"></script>
+<script type="text/javascript" src="js/engine.js"></script>
+<script type="text/javascript" src="js/InputManager.js"></script>
+<script type="text/javascript">
+
+
+    window.onload = function()
+    {
+        
+        var stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '650px';
+        stats.domElement.style.top = '0px';
+        document.body.appendChild(stats.domElement);
+             
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext("2d");
+		
+		var score = document.getElementById('score');
+		var lives = document.getElementById('lives');
+		
+		//lives.innerHTML= "<div id = \"lives\"><h1>" + 1 + "</h1></div>";
+	
+		var ball = new Ball({radius: 10, posX: 400/2, posY: 400-31, velX:1, velY: 6 });
+		var bat = new Bat({ posX: 400/2 -50, posY: 400 - 20, sizeX:85, sizeY: 20 });
+
+		var o = [ ball, bat];
+
+		var Game = new Engine({ctx: ctx, stats: stats, objects:o, score: score, lives:lives});   
+        Game.start();
+    };
+
+</script>
+
+    <style type="text/css">
+    <!–
+    body {
+		margin-left: 0px;
+		margin-top: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+
+    }
+
+	#canvas1{
+		position:absolute;
+		top: 100px;
+	}
+	
+	#scoreTitle {
+		position:absolute;
+		left: 0px;
+
+    }
+	#score{
+		position:absolute;
+		left: 100px;
+    }
+	
+	#livesTitle{
+		position:absolute;
+		left: 300px;
+    }
+	
+	#lives{
+		position:absolute;
+		left: 200px;
+    }
+	
+	
+    –>
+    </style>
+</head>
+
+<body>
+	<div id="scoreTitle" > <h1>Score:<h1></div>
+	<div id="score" > <h1 id="score">0</h1> </div >
+	
+	<div id="livesTitle" > <h1>Lives:<h1></div>
+	<div id="lives" > <h1 id="lives">0</h1> </div >
+
+
+<div id= "canvas1">
+    <canvas id="canvas" height="400px" width="650px">
+		Su navegador no soporta Canvas!
+    </canvas>
+</div>
+
+</body>
+
+</html>
